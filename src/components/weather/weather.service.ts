@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Weather } from '@components/weather/entity/weather.entity';
 import { WeatherRepositoryInterface } from '@components/weather/interface/weather.repository.interface';
 import { WeatherServiceInterface } from '@components/weather/interface/weather.service.interface';
+import { todaysDateInYYYYMMDD } from 'src/common/date-utils';
 
 @Injectable()
 export class WeatherService implements WeatherServiceInterface {
@@ -11,6 +12,13 @@ export class WeatherService implements WeatherServiceInterface {
   ) {}
 
   public async getByLatLog(lat: string, long: string): Promise<Weather[]> {
-    return this.weatherRepository.findAllByCondition({ latitude: lat, longitude: long });
+    return this.weatherRepository
+      .findAllByCondition(
+        { 
+          latitude: lat, 
+          longitude: long, 
+          createdDate: todaysDateInYYYYMMDD() 
+        }
+      );
   }
 }

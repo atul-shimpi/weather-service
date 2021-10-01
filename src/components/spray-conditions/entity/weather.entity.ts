@@ -36,7 +36,7 @@ export class Weather {
   units: string;
 
   @Column({
-    type: 'number',
+    type: 'string',
   })
-  windDrift: number;
+  windDrift: string;
 }

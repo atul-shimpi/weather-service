@@ -1,7 +1,7 @@
 import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { Weather } from '@components/weather/entity/weather.entity';
 import { WeatherServiceInterface } from '@components/weather/interface/weather.service.interface';
-import { GetWeatherQueryParams } from './helper/query-params';
+import { GetWeatherDto } from './dto/get-weather.dto';
 
 @Controller('weather')
 export class WeatherController {
@@ -11,7 +11,7 @@ export class WeatherController {
   ) {}
 
   @Get()
-  public async get(@Query() queryParams: GetWeatherQueryParams): Promise<Weather[]> {
+  public async get(@Query() queryParams: GetWeatherDto): Promise<Weather[]> {
     return this.weatherService.getByLatLog(queryParams.lat, queryParams.long);
   }
 }

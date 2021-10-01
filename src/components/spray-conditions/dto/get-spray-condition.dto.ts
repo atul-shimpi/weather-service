@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class GetWeatherQueryParams{
+export class GetSprayConditionsDto{
   @IsNotEmpty()
   @IsString()
   lat: string;
